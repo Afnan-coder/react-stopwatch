@@ -8,12 +8,12 @@ function App() {
   const timeRef = useRef(null)
 
   const start = () => {
-    if (!isRunnig) {
-      setIsRunnig(true)
-      timeRef.current = setInterval(() => {
-        setTime((prevTime) => {prevTime + 20})
-      }, 20);
-    }
+   if (!isRunnig) {
+    setIsRunnig(true)
+    timeRef.current = setInterval(() => {
+      setTime(prevTime => prevTime + 20)
+    }, 20);
+   }
   }
 
   const stop = () => {
