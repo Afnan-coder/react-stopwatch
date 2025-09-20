@@ -1,4 +1,4 @@
-import { useState,useRef } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
 
 function App() {
@@ -11,9 +11,7 @@ function App() {
     if (!isRunnig) {
       setIsRunnig(true)
       timeRef.current = setInterval(() => {
-        setTime((prevTime) => {
-          prevTime + 20
-        })
+        setTime((prevTime) => {prevTime + 20})
       }, 20);
     }
   }
@@ -29,9 +27,17 @@ function App() {
     setIsRunnig(false)
   }
 
+  const formateTime = (time) => {
+    const milliSeconds = `0${Math.floor((time % 1000) / 10)}`.slice(-2)
+    const seconds = `0${Math.floor((time / 1000) % 60)}`.slice(-2)
+    const minutes = `0${Math.floor((time / 60000) % 60)}`.slice(-2)
+    return `${minutes}:${seconds}:${milliSeconds}`
+  }
+
+
   return (
     <div className="flex flex-col m-auto w-fit p-10 items-center gap-10 text-4xl rounded-2xl text-white mt-20 bg-green-900">
-      <h1 className="font-bold text-6xl">{"00:00:00"}</h1>
+      <h1 className="font-bold text-6xl">{formateTime(time)}</h1>
       <div className="buttons flex gap-2">
         <button className="bg-white text-blue-500 hover:scale-105 transition duration-500 rounded-xl px-4 outline-1 cursor-pointer py-1 text-xl font-bold" onClick={start}>Start</button>
         <button className="bg-white text-blue-500 hover:scale-105 transition duration-500 rounded-xl px-4 outline-1 cursor-pointer py-1 text-xl font-bold" onClick={stop}>Stop</button>
